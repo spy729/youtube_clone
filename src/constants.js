@@ -1,1 +1,1 @@
-import express from "express";
+export const DB_NAME = "youtube_database"
