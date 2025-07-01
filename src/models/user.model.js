@@ -51,7 +51,7 @@ const userSchema = new mongoose.Schema({
  // it runs before the operation you give in params and also has access to values in schema using this 
 userSchema.pre("save" ,async function (next) {
     if(! this.isModified("password")) return next();
-    this.password = bcrypt.hash(this.password , 10)
+    this.password =  await bcrypt.hash(this.password , 10)
     next()
 })
  //  used for generating methods and all these have access to the values present in schema 
