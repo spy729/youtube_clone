@@ -1,5 +1,3 @@
-// --------------- hard way to create a function wrapper but more efficient ------
-
 const asyncHandler = (requestHandler) => {
     return (req, res, next) => {
         Promise.resolve(requestHandler(req, res, next)).catch((err) => next(err))
@@ -7,18 +5,23 @@ const asyncHandler = (requestHandler) => {
 }
 
 
+export { asyncHandler }
 
-// ----------this is an easy way to do so it is a type of function wrapper ---------
 
-// const asyncHandler = (fn) => async (req , res , next) => {
+
+
+// const asyncHandler = () => {}
+// const asyncHandler = (func) => () => {}
+// const asyncHandler = (func) => async () => {}
+
+
+// const asyncHandler = (fn) => async (req, res, next) => {
 //     try {
-//         await fn(req , res , next);  
+//         await fn(req, res, next)
 //     } catch (error) {
-//         res.status(error.code || 500).json({
-//             success : false , 
-//             message : error.message,
+//         res.status(err.code || 500).json({
+//             success: false,
+//             message: err.message
 //         })
 //     }
 // }
-
-export {asyncHandler}
